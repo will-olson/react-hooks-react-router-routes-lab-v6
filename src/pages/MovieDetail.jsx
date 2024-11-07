@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
-function Movie() {
+function MovieDetail() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
@@ -33,19 +32,12 @@ function Movie() {
   }
 
   return (
-    <>
-      <NavBar />
-      <div>
-        <h1>{movie.title}</h1>
-        <p>Time: {movie.time} minutes</p>
-        <div>
-          Genres: {movie.genres.map((genre, index) => (
-            <span key={index}>{genre}{index < movie.genres.length - 1 ? ', ' : ''}</span>
-          ))}
-        </div>
-      </div>
-    </>
+    <div>
+      <h1>{movie.title}</h1>
+      <p>Time: {movie.time} minutes</p>
+      <p>Genres: {movie.genres.join(", ")}</p>
+    </div>
   );
 }
 
-export default Movie;
+export default MovieDetail;
